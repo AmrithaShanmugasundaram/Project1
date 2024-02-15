@@ -1,0 +1,233 @@
+package dairyproject;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Image;
+import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+public class dairy3 {
+private JFrame frame;
+private JTextField t1;
+private JTextField t2;
+private JTextField t3;
+private JTextField t4;
+private JTextField t5;
+private JTextField t6;
+private JTextField t7;
+private JTextField t8;
+/**
+* Launch the application.
+*/
+public static void NewScreen() {
+EventQueue.invokeLater(new Runnable() {
+public void run() {
+try {
+dairy3 window = new dairy3();
+window.frame.setVisible(true);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+/**
+* Create the application.
+*/
+public dairy3() {
+
+initialize();
+}
+/**
+* Initialize the contents of the frame.
+*/
+private void initialize()
+{
+frame = new JFrame();
+frame.getContentPane().setBackground(new Color(121, 229, 57));
+frame.getContentPane().setLayout(null);
+JLabel lblNewLabel = new JLabel("USERNAME");
+lblNewLabel.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblNewLabel.setBounds(94, 113, 185, 25);
+frame.getContentPane().add(lblNewLabel);
+JLabel lblMobilenum = new JLabel("MOBILE_NUMBER");
+lblMobilenum.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblMobilenum.setBounds(94, 160, 185, 25);
+frame.getContentPane().add(lblMobilenum);
+JLabel lblAddress = new JLabel("ADDRESS");
+lblAddress.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblAddress.setBounds(94, 208, 185, 25);
+frame.getContentPane().add(lblAddress);
+JLabel lblMailid = new JLabel("MAIL_ID");
+lblMailid.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblMailid.setBounds(94, 255, 185, 25);
+frame.getContentPane().add(lblMailid);
+JLabel lblSubscription = new JLabel("SUBSCRIPTION");
+lblSubscription.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblSubscription.setBounds(94, 304, 185, 25);
+frame.getContentPane().add(lblSubscription);
+
+JLabel lblProduct = new JLabel("PRODUCT");
+lblProduct.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblProduct.setBounds(94, 351, 185, 25);
+frame.getContentPane().add(lblProduct);
+JLabel lblAddress_1 = new JLabel("QUANTITY");
+lblAddress_1.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblAddress_1.setBounds(94, 398, 185, 25);
+frame.getContentPane().add(lblAddress_1);
+JLabel lblBillOption = new JLabel("BILL OPTION\r\n");
+lblBillOption.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+lblBillOption.setBounds(94, 449, 185, 25);
+frame.getContentPane().add(lblBillOption);
+
+JLabel lblNewLabel_2 = new JLabel("(prepaid/postpaid)");
+lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+lblNewLabel_2.setBounds(94, 469, 136, 20);
+frame.getContentPane().add(lblNewLabel_2);
+
+t1 = new JTextField();
+t1.setBounds(316, 107, 217, 25);
+frame.getContentPane().add(t1);
+t1.setColumns(10);
+t2 = new JTextField();
+t2.setColumns(10);
+t2.setBounds(316, 160, 217, 25);
+frame.getContentPane().add(t2);
+t3 = new JTextField();
+t3.setColumns(10);
+t3.setBounds(316, 208, 217, 25);
+frame.getContentPane().add(t3);
+
+t4 = new JTextField();
+t4.setColumns(10);
+t4.setBounds(316, 255, 217, 25);
+frame.getContentPane().add(t4);
+t5 = new JTextField();
+t5.setColumns(10);
+t5.setBounds(316, 304, 217, 25);
+frame.getContentPane().add(t5);
+t6 = new JTextField();
+t6.setColumns(10);
+t6.setBounds(316, 351, 217, 25);
+frame.getContentPane().add(t6);
+t7 = new JTextField();
+t7.setColumns(10);
+t7.setBounds(316, 398, 217, 25);
+frame.getContentPane().add(t7);
+t8 = new JTextField();
+t8.setColumns(10);
+t8.setBounds(316, 449, 217, 25);
+frame.getContentPane().add(t8);
+
+JButton btnNewButton = new JButton("SIGN IN");
+btnNewButton.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+try {
+String cname=t1.getText();
+String ph=t2.getText();
+String caddr=t3.getText();
+String mail=t4.getText();
+String subtype=t5.getText();
+String pname=t6.getText();
+int p_qty=Integer.parseInt(t7.getText());
+
+String bill=t8.getText();
+
+String url="jdbc:mysql://localhost:3306/dairy";
+String userName="root";
+String passWord="dharu2003";
+String query="insert into
+customer(cname,cphnum,caddr,mail,subtype,p_name,p_qty,bill)
+values("+"'"+cname+"','"+ph+"','"+caddr+"','"+mail+"','"+subtype+"','"+pname+"',"+p_
+qty+",'"+bill+"'"+");";
+
+Connection
+
+con=DriverManager.getConnection(url,userName,passWord);
+
+Statement st=con.createStatement();
+st.executeUpdate(query);
+Dairy2 d=new Dairy2();
+Connection
+
+con2=DriverManager.getConnection(url,userName,passWord);
+
+String query2="select * from customer where
+
+cphnum="+"'"+ph+"'";
+
+Statement st2=con2.createStatement();
+ResultSet rs2=st2.executeQuery(query2);
+rs2.next();
+int a1=rs2.getInt(1);
+String s1=rs2.getString(2);
+String s2=rs2.getString(3);
+String s3=rs2.getString(4);
+String s4=rs2.getString(5);
+String s5=rs2.getString(6);
+String s6=rs2.getString(7);
+int a2=rs2.getInt(8);
+String s7=rs2.getString(9);
+d.NewScreen(a1,s1,s2,s3,s4,s5,s6,a2,s7);
+frame.setVisible(false);
+
+}catch(Exception ex)
+
+{}
+
+}
+});
+btnNewButton.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+btnNewButton.setBounds(316, 529, 136, 45);
+frame.getContentPane().add(btnNewButton);
+JLabel lblNewLabel_1 = new JLabel("");
+Image IMG= new
+
+ImageIcon(this.getClass().getResource("/IMG3.PNG")).getImage();
+lblNewLabel_1.setIcon(new ImageIcon(IMG));
+lblNewLabel_1.setBounds(776, 41, 154, 128);
+frame.getContentPane().add(lblNewLabel_1);
+frame.setBounds(100, 100, 996, 683);
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+}
+}
