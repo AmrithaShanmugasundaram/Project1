@@ -1,0 +1,81 @@
+package dairyproject;
+import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.JTextArea;
+public class dairy4 {
+private JFrame frame;
+
+/**
+* Launch the application.
+*/
+public static void NewScreen3(int id,String l1,int c1,String l2,int c2,String l3,int
+p1,String l4,int p2,String l5,int g1,String l6,int g2,String l7,int m1,String l8,int m2,String
+l9,int b1,String l10,int b2,int tot) {
+
+EventQueue.invokeLater(new Runnable() {
+public void run() {
+try {
+dairy4 window = new
+
+dairy4(id,l1,c1,l2,c2,l3,p1,l4,p2,l5,g1,l6,g2,l7,m1,l8,m2,l9,b1,l10,b2,tot);
+window.frame.setVisible(true);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+/**
+* Create the application.
+*/
+public dairy4()
+{
+initialize();
+}
+public dairy4(int id,String l1,int c1,String l2,int c2,String l3,int p1,String l4,int
+p2,String l5,int g1,String l6,int g2,String l7,int m1,String l8,int m2,String l9,int b1,String
+l10,int b2,int tot) {
+initialize();
+try {
+JTextArea textArea = new JTextArea();
+textArea.setBackground(new Color(160, 236, 115));
+textArea.setBounds(50, 82, 1239, 335);
+
+textArea.setText("________________________BILL____________________
+______\n"+l1+":"+c1+"\n"+l2+":"+c2+"\n"+l3+":"+p1+"\n"+l4+":"+p2+"\n"+l5+":"+
+g1+"\n"+l6+":"+g2+"\n"+l7+":"+m1+"\n"+l8+":"+m2+"\n"+l9+":"+b1+"\n"+l10+":"+b
+2+"\n"+"TOTAL AMOUNT:"+tot+"\n");
+
+frame.getContentPane().add(textArea);
+String url="jdbc:mysql://localhost:3306/dairy";
+
+String userName="root";
+String passWord="dharu2003";
+java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+String query="insert into bill(cid,date,amount)
+
+values("+id+",'"+sqlDate+"',"+tot+");";
+
+Connection con=DriverManager.getConnection(url,userName,passWord);
+Statement st=con.createStatement();
+st.executeUpdate(query);
+}catch(Exception e)
+{
+}
+}
+/**
+* Initialize the contents of the frame.
+*/
+private void initialize() {
+frame = new JFrame();
+frame.getContentPane().setBackground(new Color(121, 229, 57));
+frame.getContentPane().setLayout(null);
+
+frame.setBounds(100, 100, 1375, 783);
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+}
