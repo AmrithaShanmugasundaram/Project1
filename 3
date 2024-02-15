@@ -1,0 +1,278 @@
+package dairyproject;
+import javax.swing.*;
+import java.awt.*;
+import java.sql.*;
+import java.awt.image.*;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+public class Dairy2 {
+private JFrame frame;
+/**
+* Launch the application.
+
+*/
+public static void NewScreen(int a1,String s1,String s2,String s3,String s4,String
+s5,String s6,int a2,String s7) {
+
+EventQueue.invokeLater(new Runnable() {
+public void run() {
+try {
+Dairy2 window = new
+
+Dairy2(a1,s1,s2,s3,s4,s5,s6,a2,s7);
+
+window.frame.setVisible(true);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+/**
+* Create the application.
+*/
+int id,qty;String name,ph,addr,mail,sub,p_name,bill;
+private JTextField curd1;
+private JTextField panner2;
+private JTextField ghee2;
+private JTextField milk1;
+private JTextField butter1;
+private JTextField curd2;
+private JTextField panner1;
+private JTextField ghee1;
+private JTextField butter2;
+private JTextField milk2;
+public Dairy2()
+{
+initialize();
+}
+public Dairy2(int a1,String s1,String s2,String s3,String s4,String s5,String s6,int
+a2,String s7) {
+
+initialize();
+this.id=a1;
+this.name=s1;
+this.ph=s2;
+this.addr=s3;
+
+this.mail=s4;
+this.sub=s5;
+this.p_name=s6;
+this.qty=a2;
+this.bill=s7;
+frame.getContentPane().setLayout(null);
+JTextArea txt1 = new JTextArea();
+txt1.setBounds(69, 22, 873, 193);
+txt1.setBackground(new Color(164, 237, 120));
+txt1.setFont(new Font("Arial", Font.ITALIC, 15));
+
+txt1.setText("ID:"+id+"\nName:"+name+"\nphone_no:"+ph+"\nAddress:"+addr+"\n
+Mail_id:"+mail+"\nSub:"+sub+"\np_name:"+p_name+"\nqty:"+qty+"\nbill:"+bill);
+
+frame.getContentPane().add(txt1);
+
+JLabel lblNewLabel = new JLabel("");
+lblNewLabel.setBounds(69, 241, 88, 68);
+Image IMG3= new
+
+ImageIcon(this.getClass().getResource("/curd.jpg")).getImage();
+lblNewLabel.setIcon(new ImageIcon(IMG3));
+frame.getContentPane().add(lblNewLabel);
+JLabel lblNewLabel_1 = new JLabel("");
+lblNewLabel_1.setBounds(69, 353, 88, 77);
+Image IMG4= new
+
+ImageIcon(this.getClass().getResource("/p.jpg")).getImage();
+lblNewLabel_1.setIcon(new ImageIcon(IMG4));
+frame.getContentPane().add(lblNewLabel_1);
+
+JLabel lblNewLabel_1_2 = new JLabel("");
+lblNewLabel_1_2.setBounds(69, 477, 88, 68);
+Image IMG5= new
+
+ImageIcon(this.getClass().getResource("/ghn.jpg")).getImage();
+lblNewLabel_1_2.setIcon(new ImageIcon(IMG5));
+frame.getContentPane().add(lblNewLabel_1_2);
+JLabel lblNewLabel_2 = new JLabel("");
+lblNewLabel_2.setBounds(544, 262, 82, 129);
+
+Image IMG6= new
+
+ImageIcon(this.getClass().getResource("/milk.png")).getImage();
+lblNewLabel_2.setIcon(new ImageIcon(IMG6));
+frame.getContentPane().add(lblNewLabel_2);
+JLabel lblNewLabel_3 = new JLabel("");
+lblNewLabel_3.setBounds(543, 460, 83, 68);
+Image IMG7= new
+
+ImageIcon(this.getClass().getResource("/b.jpg")).getImage();
+lblNewLabel_3.setIcon(new ImageIcon(IMG7));
+frame.getContentPane().add(lblNewLabel_3);
+JLabel l1 = new JLabel("CURD 200g(₹20)");
+l1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l1.setBounds(348, 244, 254, 24);
+frame.getContentPane().add(l1);
+curd1 = new JTextField();
+curd1.setBounds(237, 241, 96, 27);
+frame.getContentPane().add(curd1);
+curd1.setColumns(10);
+JLabel l3 = new JLabel("PANNER 250g(₹100)");
+l3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l3.setBounds(356, 363, 246, 28);
+frame.getContentPane().add(l3);
+panner2 = new JTextField();
+panner2.setColumns(10);
+panner2.setBounds(248, 403, 96, 27);
+frame.getContentPane().add(panner2);
+JLabel l5 = new JLabel("GHEE 250ml(₹150)\r\n");
+l5.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l5.setBounds(356, 477, 223, 26);
+frame.getContentPane().add(l5);
+ghee2 = new JTextField();
+ghee2.setColumns(10);
+ghee2.setBounds(248, 519, 96, 27);
+frame.getContentPane().add(ghee2);
+
+milk1 = new JTextField();
+milk1.setColumns(10);
+milk1.setBounds(716, 302, 96, 27);
+frame.getContentPane().add(milk1);
+butter1 = new JTextField();
+butter1.setColumns(10);
+butter1.setBounds(716, 460, 96, 27);
+frame.getContentPane().add(butter1);
+JLabel lblNewLabel_9 = new JLabel("Quantity\r\n");
+lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC,
+
+12));
+
+lblNewLabel_9.setBounds(161, 278, 60, 31);
+frame.getContentPane().add(lblNewLabel_9);
+JLabel lblNewLabel_9_1 = new JLabel("Quantity\r\n");
+lblNewLabel_9_1.setFont(new Font("Tahoma", Font.BOLD |
+
+Font.ITALIC, 12));
+
+lblNewLabel_9_1.setBounds(161, 382, 60, 31);
+frame.getContentPane().add(lblNewLabel_9_1);
+JLabel lblNewLabel_9_2 = new JLabel("Quantity\r\n");
+lblNewLabel_9_2.setFont(new Font("Tahoma", Font.BOLD |
+
+Font.ITALIC, 12));
+
+lblNewLabel_9_2.setBounds(167, 497, 60, 31);
+frame.getContentPane().add(lblNewLabel_9_2);
+JLabel lblNewLabel_9_3 = new JLabel("Quantity\r\n");
+lblNewLabel_9_3.setFont(new Font("Tahoma", Font.BOLD |
+
+Font.ITALIC, 12));
+
+lblNewLabel_9_3.setBounds(624, 298, 60, 31);
+frame.getContentPane().add(lblNewLabel_9_3);
+JLabel lblNewLabel_9_4 = new JLabel("Quantity\r\n");
+lblNewLabel_9_4.setFont(new Font("Tahoma", Font.BOLD |
+
+Font.ITALIC, 12));
+
+lblNewLabel_9_4.setBounds(636, 475, 60, 31);
+frame.getContentPane().add(lblNewLabel_9_4);
+
+curd2 = new JTextField();
+curd2.setColumns(10);
+curd2.setBounds(237, 282, 96, 27);
+frame.getContentPane().add(curd2);
+JLabel l2 = new JLabel("CURD 400g(₹40)");
+l2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l2.setBounds(348, 285, 254, 24);
+frame.getContentPane().add(l2);
+panner1 = new JTextField();
+panner1.setColumns(10);
+panner1.setBounds(248, 366, 96, 27);
+frame.getContentPane().add(panner1);
+JLabel l4 = new JLabel("PANNER \r\n500g(₹200)");
+l4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l4.setBounds(356, 401, 246, 28);
+frame.getContentPane().add(l4);
+ghee1 = new JTextField();
+ghee1.setColumns(10);
+ghee1.setBounds(248, 482, 96, 27);
+frame.getContentPane().add(ghee1);
+JLabel l6 = new JLabel("GHEE 500ml(₹310)\r\n");
+l6.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l6.setBounds(356, 519, 223, 26);
+frame.getContentPane().add(l6);
+butter2 = new JTextField();
+butter2.setColumns(10);
+butter2.setBounds(716, 501, 96, 27);
+frame.getContentPane().add(butter2);
+JLabel l9 = new JLabel("BUTTER 250g(₹100)");
+l9.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l9.setBounds(822, 460, 223, 24);
+frame.getContentPane().add(l9);
+JLabel l10 = new JLabel("BUTTER 500g(₹220)");
+
+l10.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l10.setBounds(822, 504, 223, 24);
+frame.getContentPane().add(l10);
+milk2 = new JTextField();
+milk2.setColumns(10);
+milk2.setBounds(716, 343, 96, 27);
+frame.getContentPane().add(milk2);
+JLabel l7 = new JLabel("MILK 500ml(₹25)\r\n");
+l7.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l7.setBounds(822, 300, 207, 26);
+frame.getContentPane().add(l7);
+JLabel l8 = new JLabel("MILK 1000ml(₹52)");
+l8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+l8.setBounds(822, 341, 207, 26);
+frame.getContentPane().add(l8);
+JButton BILL = new JButton("BILL\r\n");
+BILL.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+int c1=Integer.parseInt(curd1.getText())*20;
+int c2=Integer.parseInt(curd2.getText())*40;
+int p1=Integer.parseInt(panner1.getText())*100;
+int p2=Integer.parseInt(panner2.getText())*200;
+int g1=Integer.parseInt(ghee1.getText())*150;
+int g2=Integer.parseInt(ghee2.getText())*310;
+int m1=Integer.parseInt(milk1.getText())*25;
+int m2=Integer.parseInt(milk2.getText())*52;
+int b1=Integer.parseInt(butter1.getText())*100;
+int b2=Integer.parseInt(butter2.getText())*220;
+int tot=c1+c2+p1+p2+g1+g2+m1+m2+b1+b2;
+String k1=l1.getText();
+String k2=l2.getText();
+String k3=l3.getText();
+String k4=l4.getText();
+String k5=l5.getText();
+String k6=l6.getText();
+String k7=l7.getText();
+String k8=l8.getText();
+
+String k9=l9.getText();
+String k10=l10.getText();
+dairy4 d4=new dairy4();
+
+d4.NewScreen3(id,k1,c1,k2,c2,k3,p1,k4,p2,k5,g1,k6,g2,k7,m1,k8,m2,k9,b1,k10,b2,tot);
+
+}
+});
+BILL.setFont(new Font("Tahoma", Font.PLAIN, 15));
+BILL.setBounds(811, 554, 85, 39);
+frame.getContentPane().add(BILL);
+
+}
+private void initialize(){
+frame = new JFrame();
+frame.setBounds(100,100,999,679);
+frame.getContentPane().setBackground(new Color(121, 229, 57));
+
+// txt1.setFont(new Font("Arial", Font.ITALIC, 15));
+/*JTextArea txt1 = new JTextArea();
+txt1.setBackground(new Color(164, 237, 120));
+txt1.setBounds(69, 72, 873, 519);
+frame.getContentPane().add(txt1);*/
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+}
