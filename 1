@@ -1,0 +1,154 @@
+package dairyproject;
+import java.awt.EventQueue;
+import java.awt.image.*;
+import java.sql.*;
+import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.awt.Font;
+import java.awt.Image;
+import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import java.awt.SystemColor;
+import javax.swing.JTextArea;
+public class Dairy {
+private JFrame frame;
+private JTextField username;
+private JButton btnNewButton;
+public int num;
+/**
+* Launch the application.
+*/
+public static void main(String[] args) {
+EventQueue.invokeLater(new Runnable() {
+public void run() {
+try {
+Dairy window = new Dairy();
+window.frame.setVisible(true);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+/**
+* Create the application.
+*/
+public Dairy() {
+initialize();
+}
+/**
+* Initialize the contents of the frame.
+*/
+private JLabel lblNewLabel;
+private JLabel lblNewLabel_2;
+private JTextField userid;
+
+private JButton btnNewButton_1;
+
+private void initialize() {
+frame = new JFrame();
+frame.setVisible(true);
+frame.setBounds(100,100,999,679);
+frame.getContentPane().setBackground(new Color(121, 229, 57));
+frame.getContentPane().setLayout(null);
+username = new JTextField();
+username.setBounds(292, 289, 192, 28);
+frame.getContentPane().add(username);
+username.setColumns(10);
+JLabel lblNewLabel_1 = new JLabel("USERNAME");
+lblNewLabel_1.setBounds(99, 291, 130, 28);
+lblNewLabel_1.setBackground(new Color(240, 240, 240));
+lblNewLabel_1.setFont(new Font("Palatino Linotype", Font.BOLD
+
+Font.ITALIC, 20));
+
+frame.getContentPane().add(lblNewLabel_1);
+lblNewLabel = new JLabel("");
+lblNewLabel.setBounds(394, 23, 221, 199);
+Image IMG= new
+
+ImageIcon(this.getClass().getResource("/img1.PNG")).getImage();
+lblNewLabel.setIcon(new ImageIcon(IMG));
+frame.getContentPane().add(lblNewLabel);
+lblNewLabel_2 = new JLabel("");
+lblNewLabel_2.setBounds(562, 278, 379, 296);
+Image IMG2= new
+
+ImageIcon(this.getClass().getResource("/IMG2.PNG")).getImage();
+lblNewLabel_2.setIcon(new ImageIcon(IMG2));
+frame.getContentPane().add(lblNewLabel_2);
+userid = new JTextField();
+userid.setBounds(292, 378, 192, 28);
+userid.setColumns(10);
+frame.getContentPane().add(userid);
+
+JLabel lblNewLabel_1_1 = new JLabel("USER ID");
+lblNewLabel_1_1.setBounds(99, 385, 130, 28);
+lblNewLabel_1_1.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 20));
+
+lblNewLabel_1_1.setBackground(SystemColor.menu);
+frame.getContentPane().add(lblNewLabel_1_1);
+btnNewButton_1 = new JButton("CREATE AN ACCOUNT");
+btnNewButton_1.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+dairy3 d3=new dairy3();
+d3.NewScreen();
+
+}
+});
+btnNewButton_1.setBounds(242, 557, 232, 28);
+btnNewButton_1.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+frame.getContentPane().add(btnNewButton_1);
+
+btnNewButton = new JButton("LOGIN");
+btnNewButton.setBounds(242, 483, 232, 33);
+btnNewButton.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+try {
+Dairy2 d=new Dairy2();
+int num=Integer.parseInt(userid.getText());
+String url="jdbc:mysql://localhost:3306/dairy";
+String userName="root";
+String passWord="dharu2003";
+String query="select * from customer where cid="+num;
+Connection
+
+con=DriverManager.getConnection(url,userName,passWord);
+Statement st=con.createStatement();
+ResultSet rs=st.executeQuery(query);
+
+rs.next();
+int a1=rs.getInt(1);
+String s1=rs.getString(2);
+String s2=rs.getString(3);
+String s3=rs.getString(4);
+String s4=rs.getString(5);
+String s5=rs.getString(6);
+String s6=rs.getString(7);
+int a2=rs.getInt(8);
+String s7=rs.getString(9);
+d.NewScreen(a1,s1,s2,s3,s4,s5,s6,a2,s7);
+frame.setVisible(false);
+}catch(Exception ex)
+{}
+}
+});
+
+btnNewButton.setFont(new Font("Palatino Linotype", Font.BOLD |
+
+Font.ITALIC, 17));
+
+frame.getContentPane().add(btnNewButton);
+}
+}
